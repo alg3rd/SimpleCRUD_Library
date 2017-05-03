@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Import;
 
 import com.websystique.library.configuration.JpaConfiguration;
 
-
 @Import(JpaConfiguration.class)
 @SpringBootApplication(scanBasePackages={"com.websystique.library"})// same as @Configuration @EnableAutoConfiguration @ComponentScan
 public class SpringBootCRUDApp {

@@ -1,23 +1,20 @@
 package com.websystique.library.Reader;
 
-
 import java.util.List;
 
 public interface Service {
 	
-	Reader findById(Long id);
+	Reader findOne(Long id);
 
 	Reader findByName(String name);
 
-	void saveUser(Reader reader);
+	void save(Reader reader);
 
-	void updateUser(Reader reader);
+	void delete(Long id);
 
-	void deleteUserById(Long id);
+	void deleteAll();
 
-	void deleteAllUsers();
-
-	List<Reader> findAllUsers();
+	List<Reader> findAll();
 
 	boolean isUserExist(Reader reader);
 }

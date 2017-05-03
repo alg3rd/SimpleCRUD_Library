@@ -6,7 +6,6 @@ import com.websystique.library.repositories.ReaderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-
 @org.springframework.stereotype.Service("userService")
 @Transactional
 public class ServiceImpl implements Service {
@@ -14,31 +13,26 @@ public class ServiceImpl implements Service {
     @Autowired
     private ReaderRepository repository;
 
-    public Reader findById(Long id) {
+    public Reader findOne(Long id) {
         return repository.findOne(id);
     }
-
     public Reader findByName(String name) {
         return repository.findByLastName(name);
     }
 
-    public void saveUser(Reader reader) {
+    public void save(Reader reader) {
         repository.save(reader);
     }
 
-    public void updateUser(Reader reader) {
-        saveUser(reader);
-    }
-
-    public void deleteUserById(Long id) {
+    public void delete(Long id) {
         repository.delete(id);
     }
 
-    public void deleteAllUsers() {
+    public void deleteAll() {
         repository.deleteAll();
     }
 
-    public List<Reader> findAllUsers() {
+    public List<Reader> findAll() {
         return repository.findAll();
     }
 

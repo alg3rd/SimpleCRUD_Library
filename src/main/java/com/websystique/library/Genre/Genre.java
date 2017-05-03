@@ -1,4 +1,4 @@
-package com.websystique.library.model;
+package com.websystique.library.Genre;
 
 import org.hibernate.validator.constraints.NotEmpty;
 

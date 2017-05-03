@@ -3,15 +3,13 @@ package com.websystique.library.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.websystique.library.util.CustomErrorType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-
-import com.websystique.library.util.CustomErrorType;
 
 @RestController
 @RequestMapping("/reader/ajax")
@@ -20,22 +18,21 @@ public class Controller {
     public static final Logger logger = LoggerFactory.getLogger(Controller.class);
 
     @Autowired
-    Service userService;
+    private Service userService;
 
     @RequestMapping(value = "/rows", method = RequestMethod.GET)
     public ResponseEntity<ArrayList<Reader>> listAllUsers() {
-        List<Reader> readers = userService.findAllUsers();
-//        Map<String, Serializable> map = new HashMap<>();
+        List<Reader> readers = userService.findAll();
+        //        Map<String, Serializable> map = new HashMap<>();
 //        map.put("rows", );
 //        map.put("value", "Foo");
 
         return new ResponseEntity<>(new ArrayList<>(readers), HttpStatus.OK);
     }
-
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getUser(@PathVariable("id") long id) {
         logger.info("Fetching Reader with id {}", id);
-        Reader reader = userService.findById(id);
+        Reader reader = userService.findOne(id);
         if (reader == null) {
             logger.error("Reader with id {} not found.", id);
             return new ResponseEntity(new CustomErrorType("Reader with id " + id
@@ -48,12 +45,12 @@ public class Controller {
     public ResponseEntity<?> createUser(@RequestBody Reader reader, UriComponentsBuilder ucBuilder) {
         logger.info("Creating Reader : {}", reader);
 
-        if (userService.isUserExist(reader)) {
+        if (userService.findByName(reader.getLastName()) != null) {
             logger.error("Unable to create. A Reader with name {} already exist", reader.getFirstName());
             return new ResponseEntity(new CustomErrorType("Unable to create. A Reader with name " +
                     reader.getFirstName() + " already exist."), HttpStatus.CONFLICT);
         }
-        userService.saveUser(reader);
+        userService.save(reader);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/api/reader/{id}").buildAndExpand(reader.getId()).toUri());
@@ -64,7 +61,7 @@ public class Controller {
     public ResponseEntity<?> updateUser(@PathVariable("id") long id, @RequestBody Reader reader) {
         logger.info("Updating Reader with id {}", id);
 
-        Reader currentReader = userService.findById(id);
+        Reader currentReader = userService.findOne(id);
 
         if (currentReader == null) {
             logger.error("Unable to update. Reader with id {} not found.", id);
@@ -78,7 +75,7 @@ public class Controller {
         currentReader.setLastName(reader.getLastName());
         currentReader.setAddress(reader.getAddress());
 
-        userService.updateUser(currentReader);
+        userService.save(currentReader);
         return new ResponseEntity<Reader>(currentReader, HttpStatus.OK);
     }
 
@@ -86,13 +83,13 @@ public class Controller {
     public ResponseEntity<?> deleteUser(@PathVariable("id") long id) {
         logger.info("Fetching & Deleting Reader with id {}", id);
 
-        Reader reader = userService.findById(id);
+        Reader reader = userService.findOne(id);
         if (reader == null) {
             logger.error("Unable to delete. Reader with id {} not found.", id);
             return new ResponseEntity(new CustomErrorType("Unable to delete. Reader with id " + id + " not found."),
                     HttpStatus.NOT_FOUND);
         }
-        userService.deleteUserById(id);
+        userService.delete(id);
         return new ResponseEntity<Reader>(HttpStatus.NO_CONTENT);
     }
 
@@ -100,7 +97,7 @@ public class Controller {
     public ResponseEntity<Reader> deleteAllUsers() {
         logger.info("Deleting All Users");
 
-        userService.deleteAllUsers();
+        userService.deleteAll();
         return new ResponseEntity<Reader>(HttpStatus.NO_CONTENT);
     }
 
