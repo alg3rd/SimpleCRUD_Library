@@ -1,7 +1,7 @@
-package com.websystique.library.Genre;
+package com.algerd.library.Book;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
 @org.springframework.stereotype.Repository
-public interface Repository extends JpaRepository<Genre, Long> {
+public interface Repository extends JpaRepository<Book, Long> {
 }

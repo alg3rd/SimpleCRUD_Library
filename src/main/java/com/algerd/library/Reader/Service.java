@@ -1,4 +1,4 @@
-package com.websystique.library.Reader;
+package com.algerd.library.Reader;
 
 import java.util.List;
 

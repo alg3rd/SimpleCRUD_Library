@@ -1,4 +1,4 @@
-package com.websystique.library.Author;
+package com.algerd.library.Author;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,8 +1,8 @@
-package com.websystique.library.Reader;
+package com.algerd.library.Reader;
 
 import java.util.List;
 
-import com.websystique.library.repositories.ReaderRepository;
+import com.algerd.library.repositories.ReaderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 

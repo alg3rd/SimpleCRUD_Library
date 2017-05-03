@@ -1,4 +1,4 @@
-package com.websystique.library.util;
+package com.algerd.library.util;
 
 
 public class CustomErrorType {

@@ -1,7 +1,7 @@
-package com.websystique.library.Book;
+package com.algerd.library.Book;
 
-import com.websystique.library.Author.Author;
-import com.websystique.library.Genre.Genre;
+import com.algerd.library.Author.Author;
+import com.algerd.library.Genre.Genre;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;

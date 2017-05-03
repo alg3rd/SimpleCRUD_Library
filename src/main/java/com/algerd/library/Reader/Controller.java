@@ -1,9 +1,9 @@
-package com.websystique.library.Reader;
+package com.algerd.library.Reader;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.websystique.library.util.CustomErrorType;
+import com.algerd.library.util.CustomErrorType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

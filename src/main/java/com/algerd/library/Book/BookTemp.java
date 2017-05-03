@@ -1,11 +1,6 @@
-package com.websystique.library.Book;
+package com.algerd.library.Book;
 
-import com.websystique.library.Genre.Genre;
-import org.hibernate.validator.constraints.NotEmpty;
-
-import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
 
 //@Entity
 //@Table(name = "book")

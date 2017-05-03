@@ -1,6 +1,6 @@
-package com.websystique.library.repositories;
+package com.algerd.library.repositories;
 
-import com.websystique.library.Reader.Reader;
+import com.algerd.library.Reader.Reader;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 @org.springframework.stereotype.Repository

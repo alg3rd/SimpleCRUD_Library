@@ -1,4 +1,4 @@
-package com.websystique.library.controller;
+package com.algerd.library.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
