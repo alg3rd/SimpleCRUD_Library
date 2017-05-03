@@ -1,0 +1,47 @@
+---
+server:
+  port: 8080
+  contextPath: /
+---
+spring:
+  profiles: local, default
+  cache: none
+  freemarker:
+    cache: false
+  thymeleaf:
+    cache: false
+  resources:
+    cache-period: 0
+  devtools:
+    livereload:
+      enabled: true
+datasource:
+  sampleapp:
+    url: jdbc:mysql://localhost:3306/library
+    username: root
+    password: 4hredder
+    driverClassName: com.mysql.jdbc.Driver
+    defaultSchema:
+    maxPoolSize: 10
+    hibernate:
+      hbm2ddl.method: create-drop
+      show_sql: true
+      format_sql: true
+      dialect: org.hibernate.dialect.MySQLDialect
+---
+spring:
+  profiles: prod
+datasource:
+  sampleapp:
+    url: jdbc:mysql://localhost:3306/websystique
+    username: myuser
+    password: mypassword
+    driverClassName: com.mysql.jdbc.Driver
+    defaultSchema:
+    maxPoolSize: 20
+    hibernate:
+      hbm2ddl.method: update
+      show_sql: true
+      format_sql: true
+      dialect: org.hibernate.dialect.MySQLDialect
+
